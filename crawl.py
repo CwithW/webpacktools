@@ -72,7 +72,8 @@ def parseIndex(indexContent, base_url):
     if not base_url.endswith("/"):
         base_url = base_url + "/"
     # TODO 做成动态匹配 s.src=function(e){return r.p+"static/js/"+({
-    JS_PATH_PREFIX = "static/js/"
+    regex_prefix = r'"([^"]+)"\+\({[^}]*}\[e\]\|\|e\)\+'
+    JS_PATH_PREFIX = re.findall(regex_prefix, indexContent)[0]
     JS_PATH_SEP = "."
     JS_PATH_SUFFIX = ".js"
     # 匹配那一大段pages
