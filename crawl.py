@@ -119,7 +119,7 @@ def crawl(base_url):
             # this is chunk-vendors.js
             logger.info("Found chunk-vendors.js => %s" % src)
             founds.append((ensureAbsoulteUrl(src, base_url), "chunk-vendors"))
-        elif re.match(r'.*index\..*\.js$', src):
+        elif re.match(r'.*(?:index|app)\..*\.js$', src):
             # this is index.js
             logger.info("Found index.js => %s" % src)
             founds.append((ensureAbsoulteUrl(src, base_url), "index"))
