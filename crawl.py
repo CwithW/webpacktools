@@ -71,10 +71,11 @@ def parseIndex(indexContent, base_url):
     # find all pages.xxx.hash.js
     if not base_url.endswith("/"):
         base_url = base_url + "/"
-    # TODO 做成动态匹配 s.src=function(e){return r.p+"static/js/"+({
+    # 动态匹配 s.src=function(e){return r.p+"static/js/"+({
     regex_prefix = r'"([^"]+)"\+\({[^}]*}\[e\]\|\|e\)\+'
     JS_PATH_PREFIX = re.findall(regex_prefix, indexContent)[0]
     JS_PATH_SEP = "."
+    # TODO make this dymaic too 但是没人用非js后缀吧？
     JS_PATH_SUFFIX = ".js"
     # 匹配那一大段pages
     regex_pages = r'\[e\]\|\|e\)\+"\."\+({.*})\[e\]\+"\.js"}'
